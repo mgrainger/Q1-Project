@@ -1,0 +1,26 @@
+body {
+  height: 100vh;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  height: 20vh;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+}
+.form {
+  width: 33%;
+}
+
+.or {
+  padding-left: 2em;
+}
