@@ -30,8 +30,10 @@ h1 {
 .main {
   display: flex;
   flex-direction: column;
+  flex: 1;
   padding-left: 2em;
   padding-right: 2em;
+
 }
 
 .form {
@@ -62,6 +64,6 @@ h1 {
   padding-left: 2em;
   display: flex;
   align-items: center;
-  align-self: flex-end;
+  align-self: baseline;
   background-color: #ade2a1;
 }
