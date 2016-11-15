@@ -66,13 +66,16 @@ function getCourses(data) {
     var courses = data.courses;
     var moreCoursesURL = data.meta.courses.next;
     var $list = $('.list');
-    var $cards = $('.cards .row')
+    var $cards = $('.cards .row');
 
     for (var i = 0; i < courses.length; i++) {
         if ($("#private").prop('checked') === false) {
             if (courses[i].membership_type === 'public') {
                 var $card = '<div class="col s12 m6"> <div class="card blue-grey darken-1"> <div class="card-content white-text"><span class="card-title">' +
-                    courses[i].name + '</span><p>Insert Text Here</p></div><div class="card-action"><a href="#">Course Website</a></div></div></div></div>';
+                    courses[i].name + '</span><p>' +
+                    courses[i].addr_1 + ' ' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '<br>' + courses[i].phone +
+                    '</br></p></div><div class="card-action"><a href="' +
+                    courses[i].website + '">Course Website</a></div></div></div></div>';
                 // var $courseToList = $('<li>' + courses[i].name + '</li>');
                 // $list.append($courseToList);
                 $cards.append($card);
