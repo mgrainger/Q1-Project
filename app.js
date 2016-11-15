@@ -46,10 +46,15 @@ $(document).ready(function() {
 });
 
 function getCoordinates(data) {
-    latitude = data.results[0].geometry.location.lat;
-    longitude = data.results[0].geometry.location.lng;
+    function getLatitude() {
+        return data.results[0].geometry.location.lat;
+    }
+
+    function getLongitude() {
+        return data.results[0].geometry.location.lng;
+    }
     var swingAPI = 'https://api.swingbyswing.com/v2/courses/search_by_location?';
-    var swingCoordinates = 'lat=' + latitude + '&lng=' + longitude;
+    var swingCoordinates = 'lat=' + getLatitude() + '&lng=' + getLongitude();
     var swingParams = '&radius=100&active_only=yes&hole_count=18&order_by=global_rank&from=1';
     var swingToken = '&access_token=9a7a612e-4ccf-4deb-a2da-cde8bc46db01';
     var ajaxSwingURL = swingAPI + swingCoordinates + swingParams + swingToken;
@@ -71,7 +76,7 @@ function getCourses(data) {
     for (var i = 0; i < courses.length; i++) {
         if ($("#private").prop('checked') === false) {
             if (courses[i].membership_type === 'public') {
-                var $card = '<div class="col s12 m6"> <div class="card blue-grey darken-1"> <div class="card-content white-text"><span class="card-title">' +
+                var $card = '<div class="col s12 m6 l3"> <div class="card blue-grey darken-1"> <div class="card-content white-text"><span class="card-title">' +
                     courses[i].name + '</span><p>' +
                     courses[i].addr_1 + ' ' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '<br>' + courses[i].phone +
                     '</br></p></div><div class="card-action"><a href="' +
