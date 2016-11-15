@@ -30,13 +30,12 @@ $(document).ready(function() {
         $cityInput.val('');
         var $stateSelected = $('.state option:selected');
         var address = city + '+' + $stateSelected.val();
-        console.log(city);
         var herokuPrefix = 'https://galvanize-cors-proxy.herokuapp.com/';
         var geoAPI = 'https://maps.googleapis.com/maps/api/geocode/json?';
         var geoComp = 'address=' + address;
         var geoKey = '&key=AIzaSyDrwG2vaCL_doUJ1Io8bTNrGzxT30N6SqE';
         var ajaxGeoURL = herokuPrefix + geoAPI + geoComp + geoKey;
-        console.log(ajaxGeoURL);
+
         $.ajax({
             url: ajaxGeoURL,
             type: "GET",
@@ -63,26 +62,21 @@ function getCoordinates(data) {
     });
 }
 
-function displayMovie(data) {
-    var $title = $('<h4>' + data.Search[0].Title + '<h4>');
-    var $year = $('<h5>' + data.Search[0].Year + '<h3>');
-    var $imdbID = $('<a href="https://www.imdb.com/title/' + data.Search[0].imdbID + '">IMDb Details</a>');
-    var $poster = $('<img src="' + data.Search[0].Poster + '">');
-    var $movies = $('.movies');
-    $movies.html('');
-    $movies.append($title);
-    $movies.append($year);
-    $movies.append($imdbID);
-    $movies.append($poster);
-}
-
 function getCourses(data) {
     var courses = data.courses;
     var moreCoursesURL = data.meta.courses.next;
+    var $list = $('.list');
     for (var i = 0; i < courses.length; i++) {
-        var $courseToList = $('<li>' + courses[i].name + '</li>');
-        var $list = $('.list');
-        $list.append($courseToList);
+        if ($("#private").prop('checked') === false) {
+            console.log('private is checked');
+            if (courses[i].membership_type === 'public') {
+                var $courseToList = $('<li>' + courses[i].name + '</li>');
+                $list.append($courseToList);
+            }
+        } else {
+            var $privateToList = $('<li>' + courses[i].name + '</li>');
+            $list.append($privateToList);
+        }
     }
     if (moreCoursesURL) {
         $.ajax({

@@ -45,6 +45,11 @@ h1 {
   align-items: center;
 }
 
+.checkboxes p {
+  padding-right: 2em;
+  margin: 0px;
+}
+
 .cards {
   display: flex;
   justify-content: center;
