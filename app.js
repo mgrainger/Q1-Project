@@ -56,7 +56,7 @@ function getCoordinates(data) {
     var swingAPI = 'https://api.swingbyswing.com/v2/courses/search_by_location?';
     var swingCoordinates = 'lat=' + getLatitude() + '&lng=' + getLongitude();
     var swingParams = '&radius=100&active_only=yes&hole_count=18&order_by=global_rank&from=1';
-    var swingRadius = '&radius=100&active_only=yes';
+    var swingRadius = '&radius=50&active_only=yes';
     var holeCount = '&hole_count=' + 18;
     var orderBy = '&order_by=global_rank&from=1';
     var swingToken = '&access_token=9a7a612e-4ccf-4deb-a2da-cde8bc46db01';
