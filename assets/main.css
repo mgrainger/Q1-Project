@@ -38,34 +38,54 @@ h1 {
   padding-right: 2em;
 }
 
+#cbp-spmenu-s1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(44, 203, 137, .3)
+}
+
 .form {
   display: flex;
   flex-direction: column;
+  align-content: center;
   justify-content: center;
-  width: 70%;
+  width: 50%;
+  background-color: white;
 }
 
 .or {
   display: flex;
   justify-content: center;
-  align-items: center;
+  font-size: 1.25em;
+  color: grey;
 }
 
+.or p {
+  margin: 0px;
+}
 
-
-.search {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+input#city, input#zip {
+  background-color: #72877D;
+  height: 2.5em;
+  font-size: 1.5em;
+  padding-left: .5em;
+  margin: 0px;
 }
 
 #formRow {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-content: center;
   justify-content: center;
   width: 100%;
+}
+
+.cityForm, .zipForm {
+  display: flex;
+  align-items: center;
+    width: 100%;
 }
 
 .checkboxes {
@@ -78,6 +98,13 @@ h1 {
 .checkboxes p {
   padding-right: 1em;
   padding-left: 1em;
+}
+
+.search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cards {
@@ -101,51 +128,32 @@ h1 {
 .cbp-spmenu {
 	background: #47a3da;
 	position: fixed;
+
 }
 
 .cbp-spmenu h3 {
-	color: #afdefa;
-	font-size: 1.9em;
-	padding: 20px;
+  width: 100%;
+	color: white;
+	font-size: 4em;
+	padding: 1.25em;
 	margin: 0;
 	font-weight: 300;
-	background: #0d77b6;
-}
-
-.cbp-spmenu a {
-	display: block;
-	color: #fff;
-	font-size: 1.1em;
-	font-weight: 300;
-}
-
-.cbp-spmenu a:hover {
-	background: #258ecd;
-}
-
-.cbp-spmenu a:active {
-	background: #afdefa;
-	color: #47a3da;
+	background: #2CCB89;
 }
 
 /* Orientation-dependent styles for the content of the menu */
 
 .cbp-spmenu-vertical {
-	width: 240px;
+	width: 80em;
 	height: 100%;
 	top: 0;
 	z-index: 1000;
 }
 
-.cbp-spmenu-vertical a {
-	border-bottom: 1px solid #258ecd;
-	padding: 1em;
-}
-
 /* Vertical menu that slides from the left or right */
 
 .cbp-spmenu-left {
-	left: -240px;
+	left: -80em;
 }
 
 .cbp-spmenu-left.cbp-spmenu-open {
@@ -161,7 +169,7 @@ h1 {
 }
 
 .cbp-spmenu-push-toright {
-	left: 240px;
+	left: 80em;
 }
 
 

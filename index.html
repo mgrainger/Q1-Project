@@ -2,59 +2,37 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="assets/main.css" media="screen" title="no title">
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
         <script src="app.js" type="text/javascript"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="assets/main.css" media="screen" title="no title">
         <script src=https://cdnjs.cloudflare.com/ajax/libs/classie/1.0.1/classie.js></script>
 
         <title>Golf Search App</title>
     </head>
     <body class="cbp-spmenu-push">
-        <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-            <h3>Menu</h3>
-            <a href="#">Celery seakale</a>
-            <a href="#">Dulse daikon</a>
-            <a href="#">Zucchini garlic</a>
-            <a href="#">Catsear azuki bean</a>
-            <a href="#">Dandelion bunya</a>
-            <a href="#">Rutabaga</a>
-        </nav>
-
-        <div class="container">
-            <div class="main"></div>
-        </div>
-
         <header class="header">
             <h1>Golf Search App</h1>
             <section class="buttonset">
-                <button id="showLeftPush" class="waves-effect waves-light btn">Form</button>
+                <button id="showLeftPush" class="waves-effect waves-light btn">Search</button>
             </section>
-            <!-- <img src="http://placehold.it/200x50" class="logo"> -->
-            <!-- <p>
-                Tagline goes here.
-            </p> -->
         </header>
-        <main class="main">
-            <section class='intro'>
-                <h2>Where do you want to play golf?</h2>
-            </section>
+        <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+            <h3>Where do you want to play golf?</h3>
             <form class="form">
                 <div class="row" id="formRow">
-                    <div class="input-field col s5 m5 l5 cityForm">
-                        <input value="" id="city" type="text" class="validate">
-                        <label for="city">City</label>
+                    <div class="col s5 m5 l5 cityForm">
+                        <input value="" id="city" type="text" class="validate" placeholder="City">
                     </div>
                     <div class="col s2 m2 l2 or">
                         <p>
                             OR
                         </p>
                     </div>
-                    <div class="input-field col s5 m5 l5 zipForm">
-                        <input id="zip" type="text" class="zip">
-                        <label for="zip">Zip Code</label>
+                    <div class="col s5 m5 l5 zipForm">
+                        <input value="" id="zip" type="text" class="validate" placeholder="Zip Code">
                     </div>
                 </div>
                 <div class="row checkboxes">
@@ -75,6 +53,11 @@
                     <button type="submit" name="searchButton" class="btn waves-effect waves-light">Search</button>
                 </div>
             </form>
+        </nav>
+
+        <div class="main"></div>
+
+        <main class="main">
 
             <section class="cards">
                 <div class="row">
