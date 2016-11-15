@@ -56,8 +56,11 @@ function getCoordinates(data) {
     var swingAPI = 'https://api.swingbyswing.com/v2/courses/search_by_location?';
     var swingCoordinates = 'lat=' + getLatitude() + '&lng=' + getLongitude();
     var swingParams = '&radius=100&active_only=yes&hole_count=18&order_by=global_rank&from=1';
+    var swingRadius = '&radius=100&active_only=yes';
+    var holeCount = '&hole_count=' + 18;
+    var orderBy = '&order_by=global_rank&from=1';
     var swingToken = '&access_token=9a7a612e-4ccf-4deb-a2da-cde8bc46db01';
-    var ajaxSwingURL = swingAPI + swingCoordinates + swingParams + swingToken;
+    var ajaxSwingURL = swingAPI + swingCoordinates + swingRadius + holeCount + orderBy + swingToken;
 
     $.ajax({
         url: ajaxSwingURL,
@@ -70,7 +73,6 @@ function getCoordinates(data) {
 function getCourses(data) {
     var courses = data.courses;
     var moreCoursesURL = data.meta.courses.next;
-    var $list = $('.list');
     var $cards = $('.cards .row');
 
     for (var i = 0; i < courses.length; i++) {
@@ -81,13 +83,15 @@ function getCourses(data) {
                     courses[i].addr_1 + ' ' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '<br>' + courses[i].phone +
                     '</br></p></div><div class="card-action"><a href="' +
                     courses[i].website + '">Course Website</a></div></div></div></div>';
-                // var $courseToList = $('<li>' + courses[i].name + '</li>');
-                // $list.append($courseToList);
                 $cards.append($card);
             }
         } else {
-            var $allToList = $('<li>' + courses[i].name + '</li>');
-            $list.append($allToList);
+            var $allCards = '<div class="col s12 m6 l3"> <div class="card blue-grey darken-1"> <div class="card-content white-text"><span class="card-title">' +
+                courses[i].name + '</span><p>' +
+                courses[i].addr_1 + ' ' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '<br>' + courses[i].phone +
+                '</br></p></div><div class="card-action"><a href="' +
+                courses[i].website + '">Course Website</a></div></div></div></div>';
+            $cards.append($allCards);
         }
     }
     if (moreCoursesURL) {
