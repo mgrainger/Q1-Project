@@ -1,5 +1,5 @@
 body {
-  height: 100vh;
+  min-height: 100vh;
   width:100%;
   display: flex;
   flex-direction: column;
@@ -14,6 +14,8 @@ body {
   align-items: center;
   height: 15vh;
   background-color: #ade2a1;
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
 h1 {
@@ -27,7 +29,9 @@ h1 {
 
 .main {
   display: flex;
-  flex-direction: column;;
+  flex-direction: column;
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
 .form {
@@ -45,4 +49,14 @@ h1 {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.footer {
+  width: 100%;
+  height: 3em;
+  padding-left: 2em;
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  background-color: #ade2a1;
 }

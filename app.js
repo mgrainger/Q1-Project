@@ -44,7 +44,6 @@ $(document).ready(function() {
             success: getCoordinates,
         });
     });
-
 });
 
 function getCoordinates(data) {
@@ -64,12 +63,26 @@ function getCoordinates(data) {
     });
 }
 
+function displayMovie(data) {
+    var $title = $('<h4>' + data.Search[0].Title + '<h4>');
+    var $year = $('<h5>' + data.Search[0].Year + '<h3>');
+    var $imdbID = $('<a href="https://www.imdb.com/title/' + data.Search[0].imdbID + '">IMDb Details</a>');
+    var $poster = $('<img src="' + data.Search[0].Poster + '">');
+    var $movies = $('.movies');
+    $movies.html('');
+    $movies.append($title);
+    $movies.append($year);
+    $movies.append($imdbID);
+    $movies.append($poster);
+}
+
 function getCourses(data) {
     var courses = data.courses;
     var moreCoursesURL = data.meta.courses.next;
     for (var i = 0; i < courses.length; i++) {
-        console.log(courses[i].name);
-        $('.cardTitle').text(courses[0].name);
+        var $courseToList = $('<li>' + courses[i].name + '</li>');
+        var $list = $('.list');
+        $list.append($courseToList);
     }
     if (moreCoursesURL) {
         $.ajax({
