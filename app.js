@@ -28,13 +28,15 @@ $(document).ready(function() {
         var $cityInput = $('#city');
         var city = $cityInput.val();
         $cityInput.val('');
-        var $stateSelected = $('.state option:selected');
-        var address = city + '+' + $stateSelected.val();
+        var $zipInput = $('#zip');
+        var zip = $zipInput.val();
+        $zipInput.val('');
         var herokuPrefix = 'https://galvanize-cors-proxy.herokuapp.com/';
         var geoAPI = 'https://maps.googleapis.com/maps/api/geocode/json?';
-        var geoComp = 'address=' + address;
+        var geoZip = 'components=postal_code:' + zip;
+        var geoComp = 'address=' + city;
         var geoKey = '&key=AIzaSyDrwG2vaCL_doUJ1Io8bTNrGzxT30N6SqE';
-        var ajaxGeoURL = herokuPrefix + geoAPI + geoComp + geoKey;
+        var ajaxGeoURL = herokuPrefix + geoAPI + geoZip + geoKey;
 
         $.ajax({
             url: ajaxGeoURL,
@@ -56,8 +58,6 @@ $(document).ready(function() {
         classie.toggle(menuLeft, 'cbp-spmenu-open');
     };
 
-
-
 });
 
 function getCoordinates(data) {
@@ -71,9 +71,9 @@ function getCoordinates(data) {
     var swingAPI = 'https://api.swingbyswing.com/v2/courses/search_by_location?';
     var swingCoordinates = 'lat=' + getLatitude() + '&lng=' + getLongitude();
     var swingParams = '&radius=100&active_only=yes&hole_count=18&order_by=global_rank&from=1';
-    var swingRadius = '&radius=50&active_only=yes';
+    var swingRadius = '&radius=15&active_only=yes';
     var holeCount = '&hole_count=' + 18;
-    var orderBy = '&order_by=global_rank&from=1';
+    var orderBy = '&order_by=global_rank&from=1limit=6';
     var swingToken = '&access_token=9a7a612e-4ccf-4deb-a2da-cde8bc46db01';
     var ajaxSwingURL = swingAPI + swingCoordinates + swingRadius + holeCount + orderBy + swingToken;
 
@@ -93,17 +93,19 @@ function getCourses(data) {
     for (var i = 0; i < courses.length; i++) {
         if ($("#private").prop('checked') === false) {
             if (courses[i].membership_type === 'public') {
-                var $card = '<div class="col s12 m6 l3"> <div class="card blue-grey darken-1"> <div class="card-content white-text"><span class="card-title">' +
+                var $card = '<div class="col s12 m6 l4"> <div class="card blue-grey darken-1"> <div class="card-content white-text"><span class="card-title truncate">' +
                     courses[i].name + '</span><p>' +
-                    courses[i].addr_1 + ' ' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '<br>' + courses[i].phone +
+                    '<br>' + courses[i].addr_1 + '</br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code +
+                    '<br>' + courses[i].phone +
                     '</br></p></div><div class="card-action"><a href="' +
                     courses[i].website + '">Course Website</a></div></div></div></div>';
                 $cards.append($card);
             }
         } else {
-            var $allCards = '<div class="col s12 m6 l3"> <div class="card blue-grey darken-1"> <div class="card-content white-text"><span class="card-title">' +
+            var $allCards = '<div class="col s12 m6 l4"> <div class="card blue-grey darken-1"> <div class="card-content white-text"><span class="card-title truncate">' +
                 courses[i].name + '</span><p>' +
-                courses[i].addr_1 + ' ' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '<br>' + courses[i].phone +
+                '<br>' + courses[i].addr_1 + '</br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code +
+                '<br>' + courses[i].phone +
                 '</br></p></div><div class="card-action"><a href="' +
                 courses[i].website + '">Course Website</a></div></div></div></div>';
             $cards.append($allCards);
@@ -117,4 +119,9 @@ function getCourses(data) {
             success: getCourses,
         });
     }
+
+    $(".card").click(function() {
+
+        $(this).fadeOut(100);
+    });
 }
