@@ -40,6 +40,9 @@ $(document).ready(function() {
         var $cityInput = $('#city');
         var city = $cityInput.val();
         $cityInput.val('');
+        var $currentAdd = '<h3>' + city + '</h3>';
+        var $currentCity = $('.currentCity');
+        $currentCity.append($currentAdd);
         var $zipInput = $('#zip');
         var zip = $zipInput.val();
         $zipInput.val('');
@@ -48,7 +51,7 @@ $(document).ready(function() {
         var geoZip = 'components=postal_code:' + zip;
         var geoComp = 'address=' + city;
         var geoKey = '&key=AIzaSyDrwG2vaCL_doUJ1Io8bTNrGzxT30N6SqE';
-        var ajaxGeoURL = herokuPrefix + geoAPI + geoZip + geoKey;
+        var ajaxGeoURL = herokuPrefix + geoAPI + geoComp + geoKey;
 
         $.ajax({
             url: ajaxGeoURL,
@@ -120,8 +123,7 @@ function getCourses(data) {
         });
     }
 
-    $(".card").click(function() {
-
-        $(this).fadeOut(100);
-    });
+    // $(".card").click(function() {
+    //     $(this).fadeOut(100);
+    // });
 }
