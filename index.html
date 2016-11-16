@@ -22,19 +22,23 @@
             <!-- Modal Structure -->
             <div id="modal1" class="modal">
                 <div class="modal-content">
-                    <h4>Where do you want to play golf?</h4>
+                    <div class="row">
+                        <h4>Where do you want to play golf?</h4>
+                    </div>
                     <form class="form">
                         <div class="row" id="formRow">
-                            <div class="col s5 m5 l5 cityForm">
-                                <input value="" id="city" type="text" class="validate" placeholder="City">
+                            <div class="input-field col s5 m5 l5">
+                                <input value="" id="city" type="text" class="validate">
+                                <label for="last_name">City</label>
                             </div>
                             <div class="col s2 m2 l2 or">
                                 <p>
                                     OR
                                 </p>
                             </div>
-                            <div class="col s5 m5 l5 zipForm">
-                                <input value="" id="zip" type="text" class="validate" placeholder="Zip Code">
+                            <div class="input-field col s5 m5 l5">
+                                <input value="" id="zip" type="text" class="validate">
+                                <label for="last_name">City</label>
                             </div>
                         </div>
                         <div class="row checkboxes">
@@ -51,10 +55,13 @@
                                 <label for="eighteen">18 Holes</label>
                             </p>
                         </div>
+                        <div class="row">
+                            <input type="submit" name="searchButton" class=" modal-action waves-effect waves-green btn-flat"></input>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" name="searchButton" class=" modal-action modal-close waves-effect waves-green btn-flat">Search</input>
+                    <input type="submit" name="searchButton" class="modal-action modal-close waves-effect waves-green btn-flat"></input>
                 </div>
             </div>
         </header>

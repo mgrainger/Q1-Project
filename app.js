@@ -1,7 +1,5 @@
 $(document).ready(function() {
     $('select').material_select();
-    $('#modal1').modal('open');
-
     $('.modal').modal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
         opacity: 0.5, // Opacity of modal background
@@ -37,7 +35,7 @@ $(document).ready(function() {
     // });
 
     //Input by Address
-    $('form').submit(function(event) {
+    $('.form').submit(function(event) {
         event.preventDefault();
         var $cityInput = $('#city');
         var city = $cityInput.val();
