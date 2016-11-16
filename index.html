@@ -13,7 +13,7 @@
 
         <title>Golf Search App</title>
     </head>
-    <body class="cbp-spmenu-push">
+    <body>
         <header class="header">
             <h1>Golf Search App</h1>
 
@@ -30,19 +30,12 @@
                     </div>
                     <form class="form">
                         <div class="row" id="formRow">
-                            <div class="input-field col s5 m5 l5">
+                            <div class="col s4"></div>
+                            <div class="input-field col s4 m4 l4 cityForm">
                                 <input value="" id="city" type="text" class="validate">
-                                <label for="last_name">City</label>
+                                <label for="city">City</label>
                             </div>
-                            <div class="col s2 m2 l2 or">
-                                <p>
-                                    OR
-                                </p>
-                            </div>
-                            <div class="input-field col s5 m5 l5">
-                                <input value="" id="zip" type="text" class="validate">
-                                <label for="last_name">Zip Code</label>
-                            </div>
+                            <div class=" col s4"></div>
                         </div>
                         <div class="row checkboxes">
                             <p>
@@ -52,10 +45,6 @@
                             <p>
                                 <input type="checkbox" class="filled-in" id="private"/>
                                 <label for="private">Private</label>
-                            </p>
-                            <p>
-                                <input type="checkbox" class="filled-in" id="eighteen"/>
-                                <label for="eighteen">18 Holes</label>
                             </p>
                         </div>
                         <div class="row">
@@ -74,8 +63,7 @@
                         <!-- Append Cards Here -->
                     </div>
                     <div class="col s6 m8 l4 mapCol">
-
-                        <img src="http://www.localwebs.ca/sample_sites/images/google_map.jpg" alt=""/>
+                        <div id="map"></div>
                     </div>
                 </div>
             </section>
@@ -83,6 +71,6 @@
         <footer class="footer">
             <small>&copy; 2016 Murph Grainger</small>
         </footer>
-
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrwG2vaCL_doUJ1Io8bTNrGzxT30N6SqE"></script>
     </body>
 </html>

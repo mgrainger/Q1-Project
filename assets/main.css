@@ -27,6 +27,10 @@ h1 {
   width: auto;
 }
 
+.currentCity h3 {
+  color: white;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -43,7 +47,7 @@ h2 {
 
 #modal1 {
   margin-top: 7em;
-  width: 50vw;
+  width: 70vw;
 }
 
 .modal-content {
@@ -61,7 +65,7 @@ h2 {
   width: 100%;
 }
 
-.or {
+/*.or {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,14 +75,17 @@ h2 {
 
 .or p {
   margin: 0px;
-}
+}*/
 
 #formRow {
   display: flex;
-  flex-direction: row;
   align-content: center;
   justify-content: center;
   width: 100%;
+}
+
+input#city {
+  font-size: 2em;
 }
 
 .checkboxes {
@@ -111,7 +118,15 @@ h2 {
 
 }
 .mapCol {
-  height: 50vh;
+  height: 65vh;
+
+}
+
+#map {
+      background-color: grey;
+      position: absolute;
+      height: inherit;
+      width: inherit;
 
 }
 
@@ -122,6 +137,13 @@ h2 {
 .card-title {
   font-size: 2em;
   line-height: 1em;
+}
+address {
+  font-style: normal;
+}
+
+address a {
+  color: white;
 }
 
 .footer {
