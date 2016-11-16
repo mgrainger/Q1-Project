@@ -15,45 +15,49 @@
     <body class="cbp-spmenu-push">
         <header class="header">
             <h1>Golf Search App</h1>
-            <section class="buttonset">
-                <button id="showLeftPush" class="waves-effect waves-light btn">Search</button>
-            </section>
+
+            <!-- Modal Trigger -->
+            <a class="waves-effect waves-light btn" href="#modal1">Search</a>
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Where do you want to play golf?</h4>
+                    <form class="form">
+                        <div class="row" id="formRow">
+                            <div class="col s5 m5 l5 cityForm">
+                                <input value="" id="city" type="text" class="validate" placeholder="City">
+                            </div>
+                            <div class="col s2 m2 l2 or">
+                                <p>
+                                    OR
+                                </p>
+                            </div>
+                            <div class="col s5 m5 l5 zipForm">
+                                <input value="" id="zip" type="text" class="validate" placeholder="Zip Code">
+                            </div>
+                        </div>
+                        <div class="row checkboxes">
+                            <p>
+                                <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked"/>
+                                <label for="filled-in-box">Public</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" class="filled-in" id="private"/>
+                                <label for="private">Private</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" class="filled-in" id="eighteen"/>
+                                <label for="eighteen">18 Holes</label>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" name="searchButton" class=" modal-action modal-close waves-effect waves-green btn-flat">Search</input>
+                </div>
+            </div>
         </header>
-        <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-            <h3>Where do you want to play golf?</h3>
-            <form class="form">
-                <div class="row" id="formRow">
-                    <div class="col s5 m5 l5 cityForm">
-                        <input value="" id="city" type="text" class="validate" placeholder="City">
-                    </div>
-                    <div class="col s2 m2 l2 or">
-                        <p>
-                            OR
-                        </p>
-                    </div>
-                    <div class="col s5 m5 l5 zipForm">
-                        <input value="" id="zip" type="text" class="validate" placeholder="Zip Code">
-                    </div>
-                </div>
-                <div class="row checkboxes">
-                    <p>
-                        <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked"/>
-                        <label for="filled-in-box">Public</label>
-                    </p>
-                    <p>
-                        <input type="checkbox" class="filled-in" id="private"/>
-                        <label for="private">Private</label>
-                    </p>
-                    <p>
-                        <input type="checkbox" class="filled-in" id="eighteen"/>
-                        <label for="eighteen">18 Holes</label>
-                    </p>
-                </div>
-                <div class="row search">
-                    <button type="submit" name="searchButton" class="btn waves-effect waves-light">Search</button>
-                </div>
-            </form>
-        </nav>
 
         <main class="main">
             <section class="cards">

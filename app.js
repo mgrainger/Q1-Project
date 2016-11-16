@@ -1,14 +1,22 @@
 $(document).ready(function() {
-    console.log('JS is running');
-    $(document).ready(function() {
-        $('select').material_select();
-        $('.carousel').carousel({
-            dist: 0,
-            shift: 0,
-            padding: 20,
-        });
+    $('select').material_select();
+    $('#modal1').modal('open');
 
+    $('.modal').modal({
+        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+        opacity: 0.5, // Opacity of modal background
+        in_duration: 300, // Transition in duration
+        out_duration: 200, // Transition out duration
+        starting_top: '4%', // Starting top style attribute
+        ending_top: '10%', // Ending top style attribute
+        ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+            console.log(modal, trigger);
+        },
+        complete: function() {
+
+            } // Callback for Modal close
     });
+
 
     // $('form').submit(function(event) {
     //     event.preventDefault();
@@ -51,18 +59,6 @@ $(document).ready(function() {
             success: getCoordinates,
         });
     });
-
-    // Push Out Form
-
-    var menuLeft = document.getElementById('cbp-spmenu-s1'),
-        showLeftPush = document.getElementById('showLeftPush'),
-        body = document.body;
-
-    showLeftPush.onclick = function() {
-        classie.toggle(this, 'active');
-        classie.toggle(body, 'cbp-spmenu-push-toright');
-        classie.toggle(menuLeft, 'cbp-spmenu-open');
-    };
 
 });
 
