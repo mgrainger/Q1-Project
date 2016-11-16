@@ -2,6 +2,9 @@ $(document).ready(function() {
     console.log('JS is running');
     $(document).ready(function() {
         $('select').material_select();
+        $('.carousel.carousel-slider').carousel({
+            full_width: true
+        });
     });
 
     // $('form').submit(function(event) {

@@ -178,9 +178,7 @@ input#city, input#zip {
 	left: 80em;
 }
 
-
 /* Transitions */
-
 .cbp-spmenu,
 .cbp-spmenu-push {
 	-webkit-transition: all 0.3s ease;
