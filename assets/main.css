@@ -37,6 +37,10 @@ h1 {
   padding: 2em;
 }
 
+#modal1 {
+  width: 40vw;
+}
+
 .modal-content {
   display: flex;
   flex-direction: column;

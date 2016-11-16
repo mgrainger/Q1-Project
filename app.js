@@ -102,7 +102,7 @@ function getCourses(data) {
                 $cards.append($card);
             }
         } else {
-            var $allCards = '<div class="col s12 m6 l4"> <div class="card blue-grey darken-1"> <div class="card-content white-text"><span class="card-title truncate">' +
+            var $allCards = '<div class="col s12 m6 l6"> <div class="card blue-grey darken-1"> <div class="card-content white-text"><span class="card-title truncate">' +
                 courses[i].name + '</span><p class= "truncate">' +
                 '<br>' + courses[i].addr_1 + '</br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code +
                 '<br>' + courses[i].phone +
