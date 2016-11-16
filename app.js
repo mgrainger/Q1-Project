@@ -2,9 +2,12 @@ $(document).ready(function() {
     console.log('JS is running');
     $(document).ready(function() {
         $('select').material_select();
-        $('.carousel.carousel-slider').carousel({
-            full_width: true
+        $('.carousel').carousel({
+            dist: 0,
+            shift: 0,
+            padding: 20,
         });
+
     });
 
     // $('form').submit(function(event) {
@@ -76,7 +79,7 @@ function getCoordinates(data) {
     var swingParams = '&radius=100&active_only=yes&hole_count=18&order_by=global_rank&from=1';
     var swingRadius = '&radius=15&active_only=yes';
     var holeCount = '&hole_count=' + 18;
-    var orderBy = '&order_by=global_rank&from=1limit=6';
+    var orderBy = '&order_by=global_rank&from=1';
     var swingToken = '&access_token=9a7a612e-4ccf-4deb-a2da-cde8bc46db01';
     var ajaxSwingURL = swingAPI + swingCoordinates + swingRadius + holeCount + orderBy + swingToken;
 
@@ -91,12 +94,12 @@ function getCoordinates(data) {
 function getCourses(data) {
     var courses = data.courses;
     var moreCoursesURL = data.meta.courses.next;
-    var $cards = $('.cards .row');
+    var $cards = $('.cards .cardCol');
 
     for (var i = 0; i < courses.length; i++) {
         if ($("#private").prop('checked') === false) {
             if (courses[i].membership_type === 'public') {
-                var $card = '<div class="col s12 m6 l4"> <div class="card blue-grey darken-1"> <div class="card-content white-text"><span class="card-title truncate">' +
+                var $card = '<div class="col s12 m6 l6"> <div class="card blue-grey darken-1"> <div class="card-content white-text"><span class="card-title truncate">' +
                     courses[i].name + '</span><p>' +
                     '<br>' + courses[i].addr_1 + '</br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code +
                     '<br>' + courses[i].phone +

@@ -34,8 +34,7 @@ h1 {
   justify-content: center;
   width: 90%;
   flex: 1;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding: 2em;
 }
 
 #cbp-spmenu-s1 {
@@ -109,9 +108,20 @@ input#city, input#zip {
 
 .cards {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
 }
+.cardCol {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+.mapCol {
+  height: 50vh;
+
+}
+
+
 .card .card-content .card-title {
   line-height: 1em;
 }
