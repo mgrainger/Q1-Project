@@ -14,19 +14,22 @@ function loadMaterialStyles() {
 
 function buildGeoCodeURL() {
     var city = $('#city').val();
+    var distance = $('#distanceInput').val();
+    var $addDistance = '<h6>' + distance + '</h6>';
     var $currentAdd = '<h3>' + city + ' Golf Courses</h3>';
     var $currentCity = $('.currentCity');
     $currentCity.append($currentAdd);
-    var $zipInput = $('#zip');
-    var zip = $zipInput.val();
+    $currentCity.append($addDistance);
     var herokuPrefix = 'https://galvanize-cors-proxy.herokuapp.com/';
     var geoAPI = 'https://maps.googleapis.com/maps/api/geocode/json?';
     var mapsAPI = 'https://maps.googleapis.com/maps/api/js?';
-    var geoZip = 'components=postal_code:' + zip;
     var geoComp = 'address=' + city;
     var geoKey = '&key=AIzaSyDrwG2vaCL_doUJ1Io8bTNrGzxT30N6SqE';
     return herokuPrefix + geoAPI + geoComp + geoKey;
 }
+
+
+
 
 function attachFormSubmissionHandler() {
     $('.form').submit(function(event) {
@@ -44,6 +47,8 @@ function geoAJAXRequest(url) {
     });
 }
 
+
+
 function getLatitude(data) {
     return data.results[0].geometry.location.lat;
 }
@@ -52,13 +57,16 @@ function getLongitude(data) {
     return data.results[0].geometry.location.lng;
 }
 
+function getRadius(data) {
+    return $('.currentCity h6').text();
+}
+
 function swingURL(data) {
     var swingAPI = 'https://api.swingbyswing.com/v2/courses/search_by_location?';
     var swingCoordinates = 'lat=' + getLatitude(data) + '&lng=' + getLongitude(data);
-    var swingParams = '&radius=100&active_only=yes&hole_count=18&order_by=global_rank&from=1';
-    var swingRadius = '&radius=15&active_only=yes';
-    var holeCount = '&hole_count=' + 18;
-    var orderBy = '&order_by=global_rank&from=1';
+    var swingRadius = '&radius=' + getRadius(data);
+    var holeCount = '&active_only=yes&hole_count=' + 18;
+    var orderBy = '&order_by=local_rank&from=1';
     var swingToken = '&access_token=9a7a612e-4ccf-4deb-a2da-cde8bc46db01';
     return swingAPI + swingCoordinates + swingRadius + holeCount + orderBy + swingToken;
 }
