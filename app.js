@@ -93,7 +93,7 @@ function getCourses(data) {
         // Public v Private
         if ($("#private").prop('checked') === false) {
             if (courses[i].membership_type === 'public') {
-                var $card = '<div class="col s12 m6 l6 cardClick"><a class="btn-floating btn-large waves-effect waves-light red nix"><i class="material-icons">add</i></a><div class="card teal darken-3 outer"> <div class="card-content white-text"><span class="card-title truncate">' +
+                var $card = '<div class="col s12 m12 l6 cardClick"><a class="btn-floating btn-large waves-effect waves-light red nix"><i class="material-icons">add</i></a><div class="card teal darken-3 outer"> <div class="card-content white-text"><span class="card-title truncate">' +
                     courses[i].name + '</span><p class= "truncate">' +
                     '<address><br>' + courses[i].addr_1 + '</br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
                     '<div class = "row phoneButton"> <div class = "col s8 phone"> <i class="material-icons">phone</i>' + courses[i].phone +
