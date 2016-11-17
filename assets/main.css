@@ -152,8 +152,12 @@ input#distanceInput {
   justify-content: center;
   flex-wrap: wrap;
   height: 100%;
-
 }
+
+.card .card-action {
+padding-bottom: 0px;
+}
+
 .mapCol {
   display: flex;
   margin-top: .5em;
@@ -170,11 +174,24 @@ input#distanceInput {
 .phoneButton {
   display: flex;
   align-items: center;
-  margin: 0px;
+  /*margin: 0px;*/
+  height: 2em;
+}
+
+.nix {
+  display: none;
+  position: absolute;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+.outer {
+  position: relative;
 }
 
 .card .card-content .card-title {
   line-height: 1em;
+  font-weight: 400;
 }
 .card-title {
   font-size: 2em;
@@ -183,6 +200,8 @@ input#distanceInput {
 address {
   font-style: normal;
   line-height: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 address a {

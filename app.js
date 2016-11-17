@@ -93,11 +93,11 @@ function getCourses(data) {
         // Public v Private
         if ($("#private").prop('checked') === false) {
             if (courses[i].membership_type === 'public') {
-                var $card = '<div class="col s12 m6 l6 cardClick"> <div class="card teal darken-3"> <div class="card-content white-text"><span class="card-title truncate">' +
+                var $card = '<div class="col s12 m6 l6 cardClick"><a class="btn-floating btn-large waves-effect waves-light red nix"><i class="material-icons">add</i></a><div class="card teal darken-3 outer"> <div class="card-content white-text"><span class="card-title truncate">' +
                     courses[i].name + '</span><p class= "truncate">' +
                     '<address><br>' + courses[i].addr_1 + '</br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
                     '<div class = "row phoneButton"> <div class = "col s8 phone"> <i class="material-icons">phone</i>' + courses[i].phone +
-                    '</div><div class = "col s4 buttonPlay"><a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a></div></div><div class="card-action"><a href="' +
+                    '</div><div class = "col s4 buttonPlay"></div></div><div class="card-action"><a href="' +
                     courses[i].website + '">Course Website</a></div></div></div></div>';
                 $cards.append($card);
             }
@@ -131,17 +131,22 @@ function activeAddress() {
 }
 
 function coursesPlayed() {
-    $(".card")
+    $(".outer")
         .on("mouseenter", function() {
-            $(this).fadeTo('slow', 0.5);
+            $(this).fadeTo('fast', 0.5);
+            $(this).parents('.cardClick').find('.nix').attr('style', 'display:block').css("opacity", "1");
         })
         .on("mouseleave", function() {
-            $(this).fadeTo('slow', 1);
-        });
-    $(".cardClick").click(function() {
-        $(this).fadeOut(100);
+            $(this).fadeTo('fast', 1);
+            $(this).parents('.cardClick').find('.nix').attr('style', 'display:none');
+
+        })
+
+    .on('click', function() {
+        $(this).parents('.cardClick').fadeOut(100).remove();
     });
 }
+
 
 function initMap(data) {
     var searchCenter = {
