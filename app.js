@@ -93,16 +93,16 @@ function getCourses(data) {
         // Public v Private
         if ($("#private").prop('checked') === false) {
             if (courses[i].membership_type === 'public') {
-                var $card = '<div class="col s12 m6 l6"> <div class="card teal darken-3"> <div class="card-content white-text"><span class="card-title truncate">' +
+                var $card = '<div class="col s12 m6 l6 cardClick"> <div class="card teal darken-3"> <div class="card-content white-text"><span class="card-title truncate">' +
                     courses[i].name + '</span><p class= "truncate">' +
-                    '<address><br>' + courses[i].addr_1 + '</br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</address>' +
-                    '<br> <i class="material-icons">phone</i>' + courses[i].phone +
-                    '</br></p></div><div class="card-action"><a href="' +
+                    '<address><br>' + courses[i].addr_1 + '</br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
+                    '<div class = "row phoneButton"> <div class = "col s8 phone"> <i class="material-icons">phone</i>' + courses[i].phone +
+                    '</div><div class = "col s4 buttonPlay"><a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a></div></div><div class="card-action"><a href="' +
                     courses[i].website + '">Course Website</a></div></div></div></div>';
                 $cards.append($card);
             }
         } else {
-            var $allCards = '<div class="col s12 m6 l6"> <div class="card teal darken-3"> <div class="card-content white-text"><span class="card-title truncate">' +
+            var $allCards = '<div class="col s12 m6 l6 cardClick"> <div class="card teal darken-3"> <div class="card-content white-text"><span class="card-title truncate">' +
                 courses[i].name + '</span><p class= "truncate">' +
                 '<address><br>' + courses[i].addr_1 + '</br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</address>' +
                 '<br>' + courses[i].phone +
@@ -111,14 +111,36 @@ function getCourses(data) {
             $cards.append($allCards);
         }
     }
-    if (moreCoursesURL) {
-        $.ajax({
-            url: moreCoursesURL,
-            type: "GET",
-            dataType: 'json',
-            success: getCourses,
+
+    // if (moreCoursesURL) {
+    //     $.ajax({
+    //         url: moreCoursesURL,
+    //         type: "GET",
+    //         dataType: 'json',
+    //         success: getCourses,
+    //     });
+    coursesPlayed();
+    // activeAddress();
+}
+
+function activeAddress() {
+    $('address').each(function() {
+        var link = "<a href='http://maps.google.com/maps?q=" + encodeURIComponent($(this).text()) + "' target='_blank'>" + $(this).text() + "</a>";
+        $(this).html(link);
+    });
+}
+
+function coursesPlayed() {
+    $(".card")
+        .on("mouseenter", function() {
+            $(this).fadeTo('slow', 0.5);
+        })
+        .on("mouseleave", function() {
+            $(this).fadeTo('slow', 1);
         });
-    }
+    $(".cardClick").click(function() {
+        $(this).fadeOut(100);
+    });
 }
 
 function initMap(data) {
@@ -149,18 +171,5 @@ function initMap(data) {
 }
 
 
-
-
-
-
-
-// $(".card").click(function() {
-//     $(this).fadeOut(100);
-// });
-
-// $('address').each(function() {
-//     var link = "<a href='http://maps.google.com/maps?q=" + encodeURIComponent($(this).text()) + "' target='_blank'>" + $(this).text() + "</a>";
-//     $(this).html(link);
-// });
 
 //

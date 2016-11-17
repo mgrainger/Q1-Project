@@ -167,6 +167,11 @@ input#distanceInput {
       width: 100%;
 }
 
+.phoneButton {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+}
 
 .card .card-content .card-title {
   line-height: 1em;
@@ -177,6 +182,7 @@ input#distanceInput {
 }
 address {
   font-style: normal;
+  line-height: 1em;
 }
 
 address a {
