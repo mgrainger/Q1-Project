@@ -10,7 +10,7 @@ body {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   height: 15vh;
   background-color: #2CCB89;
@@ -26,9 +26,12 @@ h1 {
   height: 5em;
   width: auto;
 }
-
-.currentCity h3 {
-  color: white;
+.info {
+  width: 100%;
+  padding-left: 2em;
+}
+.currentCity {
+  display: none;
 }
 .master {
   display: flex;
@@ -98,8 +101,19 @@ h2 {
   width: 100%;
 }
 
-input#city {
+#rangeRow {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+}
+
+input#city, input#distanceInput {
   font-size: 2em;
+}
+
+input#distanceInput {
+  margin: .1em;
 }
 
 .checkboxes {
@@ -135,6 +149,7 @@ input#city {
 }
 .cardCol {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   height: 100%;
 

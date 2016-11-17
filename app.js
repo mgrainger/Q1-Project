@@ -2,10 +2,12 @@ $(document).ready(function() {
     loadModalAnimation();
     loadMaterialStyles();
     attachFormSubmissionHandler();
+    loadModalAnimation();
 });
 
 function loadModalAnimation() {
-    $('.modal').modal('');
+    $('.load').trigger('click');
+    $('.modal').modal();
 }
 
 function loadMaterialStyles() {
@@ -66,7 +68,7 @@ function swingURL(data) {
     var swingCoordinates = 'lat=' + getLatitude(data) + '&lng=' + getLongitude(data);
     var swingRadius = '&radius=' + getRadius(data);
     var holeCount = '&active_only=yes&hole_count=' + 18;
-    var orderBy = '&order_by=local_rank&from=1';
+    var orderBy = '&order_by=local_rank&from=1&limit=15';
     var swingToken = '&access_token=9a7a612e-4ccf-4deb-a2da-cde8bc46db01';
     return swingAPI + swingCoordinates + swingRadius + holeCount + orderBy + swingToken;
 }
@@ -129,10 +131,28 @@ function initMap(data) {
         center: searchCenter
     });
     // var marker = new google.maps.Marker({
-    //     position: uluru,
+    //     position: searchCenter,
     //     map: map
     // });
+
+    map.addListener('click', function(e) {
+        placeMarker(e.latLng, map);
+    });
+
+    function placeMarker(position, map) {
+        var marker = new google.maps.Marker({
+            position: position,
+            map: map
+        });
+        map.panTo(position);
+    }
 }
+
+
+
+
+
+
 
 // $(".card").click(function() {
 //     $(this).fadeOut(100);

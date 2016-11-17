@@ -16,12 +16,8 @@
     <body>
         <header class="header teal accent-4">
             <h1>Golf Search App</h1>
-
-            <div class="currentCity">
-                <!-- Append Current City Here -->
-            </div>
             <div class="trigger">
-                <a class="waves-effect waves-light btn" href="#modal1">Search</a>
+                <a class="waves-effect waves-light btn load" href="#modal1">Search</a>
             </div>
             <div id="modal1" class="modal">
                 <div class="modal-content">
@@ -38,8 +34,12 @@
                             <div class=" col s4"></div>
                         </div>
                         <div class="row" id="rangeRow">
-                            <label for="slider">Distance (mi)</label>
-                            <input type="text" name="name" value="" id="distanceInput">
+                            <div class="col s4"></div>
+                            <div class="input-field col s4 m4 l4">
+                                <label for="slider">Travel Distance (mi)</label>
+                                <input type="text" name="name" value="" id="distanceInput">
+                            </div>
+                            <div class="col s4"></div>
                         </div>
                         <div class="row checkboxes">
                             <p>
@@ -58,9 +58,13 @@
                 </div>
             </div>
         </header>
-        <div class="row master">
-            <div class="sidebar teal accent-4"></div>
-            <main class="main">
+        <main class="main">
+            <div class="row info">
+                <div class="currentCity">
+                    <!-- Append Current City Here -->
+                </div>
+            </div>
+            <div class="row master">
                 <section class="middle">
                     <div class="row columns">
                         <div class="col s6 m4 l8 cardCol">
