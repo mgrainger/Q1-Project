@@ -68,7 +68,7 @@ function swingURL(data) {
     var swingCoordinates = 'lat=' + getLatitude(data) + '&lng=' + getLongitude(data);
     var swingRadius = '&radius=' + getRadius(data);
     var holeCount = '&active_only=yes&hole_count=' + 18;
-    var orderBy = '&order_by=local_rank&from=1&limit=15';
+    var orderBy = '&order_by=local_rank&from=1';
     var swingToken = '&access_token=9a7a612e-4ccf-4deb-a2da-cde8bc46db01';
     return swingAPI + swingCoordinates + swingRadius + holeCount + orderBy + swingToken;
 }
@@ -112,15 +112,17 @@ function getCourses(data) {
         }
     }
 
-    // if (moreCoursesURL) {
-    //     $.ajax({
-    //         url: moreCoursesURL,
-    //         type: "GET",
-    //         dataType: 'json',
-    //         success: getCourses,
-    //     });
-    coursesPlayed();
-    // activeAddress();
+    if (moreCoursesURL) {
+        $.ajax({
+            url: moreCoursesURL,
+            type: "GET",
+            dataType: 'json',
+            success: getCourses,
+        });
+        coursesPlayed();
+        clearCourse();
+        // activeAddress();
+    }
 }
 
 function activeAddress() {
@@ -133,16 +135,15 @@ function activeAddress() {
 function coursesPlayed() {
     $(".outer")
         .on("mouseenter", function() {
-            $(this).fadeTo('fast', 0.5);
-            $(this).parents('.cardClick').find('.nix').attr('style', 'display:block').css("opacity", "1");
+            $(this).parents('.cardClick').find('.nix').attr('style', 'display:block');
         })
         .on("mouseleave", function() {
-            $(this).fadeTo('fast', 1);
             $(this).parents('.cardClick').find('.nix').attr('style', 'display:none');
+        });
+}
 
-        })
-
-    .on('click', function() {
+function clearCourse() {
+    $('.nix').click(function() {
         $(this).parents('.cardClick').fadeOut(100).remove();
     });
 }
