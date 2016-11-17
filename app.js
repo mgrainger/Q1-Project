@@ -5,6 +5,9 @@ $(document).ready(function() {
     loadModalAnimation();
 });
 
+var map = null;
+
+
 function loadModalAnimation() {
     $('.load').trigger('click');
     $('.modal').modal();
@@ -15,18 +18,25 @@ function loadMaterialStyles() {
 }
 
 function buildGeoCodeURL() {
+
     var city = $('#city').val();
     var distance = $('#distanceInput').val();
     var $addDistance = '<h6> Max Driving Distance: <span>' + distance + '</span> miles</h6>';
     var $currentAdd = '<h5>Showing Results for: <span class= "cityDistance">' + city + ' </span> Golf Courses</h5>';
     var $currentCity = $('.currentCity');
+    var $userInfo = $('.userDirections');
+    var $addDirections = '<div class="row directions">' +
+        '<p>If you already played the course click:&nbsp;&nbsp;&nbsp;' +
+        '<a class="btn-floating btn-large waves-effect waves-light  red lighten-2"><i class="material-icons">not_interested</i></a>' +
+        '</p></div>';
     $currentCity.append($currentAdd);
     $currentCity.append($addDistance);
+    $userInfo.append($addDirections);
     var herokuPrefix = 'https://galvanize-cors-proxy.herokuapp.com/';
     var geoAPI = 'https://maps.googleapis.com/maps/api/geocode/json?';
     var mapsAPI = 'https://maps.googleapis.com/maps/api/js?';
     var geoComp = 'address=' + city;
-    var geoKey = '&key=AIzaSyDrwG2vaCL_doUJ1Io8bTNrGzxT30N6SqE';
+    var geoKey = '&key=AIzaSyDrwG2vaCL_doUJ1Io8bTNrGzxT30N6SqE&libraries=places';
     return herokuPrefix + geoAPI + geoComp + geoKey;
 }
 
@@ -88,11 +98,11 @@ function getCourses(data) {
         // Public v Private
         if ($("#private").prop('checked') === false) {
             if (courses[i].membership_type === 'public') {
-                var $card = '<div class="col s12 m12 l6 cardClick"><div class= "alreadyPlayed"><p>Already Played!</p><a class="btn-floating btn-large waves-effect waves-light red nix"><i class="material-icons">not_interested</i></a></div><div class="card teal darken-3 outer"> <div class="card-content white-text"><span class="card-title truncate">' +
+                var $card = '<div class="col s12 m12 l6 cardClick" data-lat="' + courses[i].location.lat + '" data-lng="' + courses[i].location.lng + '"><div class="card teal darken-3 outer"> <div class="card-content white-text"><span class="card-title truncate">' +
                     courses[i].name + '</span><p class= "truncate">' +
-                    '<address><br>' + courses[i].addr_1 + '</br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
+                    '<address class = "address"><br>' + courses[i].addr_1 + ' </br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
                     '<div class = "row phoneButton"> <div class = "col s8 phone"> <i class="material-icons">phone</i>' + courses[i].phone +
-                    '</div><div class = "col s4 buttonPlay"></div></div><div class="card-action"><a href="' +
+                    '</div><div class = "col s4 buttonPlay"> <a class="btn-floating btn-large waves-effect waves-light red lighten-2 nix"><i class="material-icons">not_interested</i></a></div></div><div class="card-action"><a href="' +
                     courses[i].website + '">Course Website</a></div></div></div></div>';
                 $cards.append($card);
             }
@@ -114,66 +124,52 @@ function getCourses(data) {
             dataType: 'json',
             success: getCourses,
         });
-        coursesPlayed();
+        // coursesPlayed();
         clearCourse();
-        activeAddress();
+        // activeAddress();
+
+    } else {
+        addressToMap();
     }
 }
 
-function activeAddress() {
-    $('address').each(function() {
-        var link = "<a href='http://maps.google.com/maps?q=" + encodeURIComponent($(this).text()) + "' target='_blank'>" + $(this).text() + "</a>";
-        $(this).html(link);
-    });
-}
-
-// function coursesPlayed() {
-//     $(".cardClick")
-//         .on("mouseenter", function() {
-//             $(this).find('.alreadyPlayed a, p').attr('style', 'display:inline-block');
-//             $(this).find('.outer').css('opacity', 0.2);
-//         })
-//         .on("mouseleave", function() {
-//             $(this).find('.alreadyPlayed a, p').attr('style', 'display:none');
-//             $(this).find('.outer').css('opacity', 1);
-//         });
+// function activeAddress() {
+//     $('address').each(function() {
+//         var link = "<a href='http://maps.google.com/maps?q=" + encodeURIComponent($(this).text()) + "' target='_blank'>" + $(this).text() + "</a>";
+//         $(this).html(link);
+//     });
 // }
 
 function clearCourse() {
     $('.nix').click(function() {
         $(this).parents('.cardClick').fadeOut(100).remove();
-        console.log('this is called');
+
     });
 }
-
 
 function initMap(data) {
     var searchCenter = {
         lat: getLatitude(data),
         lng: getLongitude(data)
     };
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: searchCenter
     });
-    // var marker = new google.maps.Marker({
-    //     position: searchCenter,
-    //     map: map
-    // });
 
-    map.addListener('click', function(e) {
-        placeMarker(e.latLng, map);
-    });
-
-    function placeMarker(position, map) {
-        var marker = new google.maps.Marker({
-            position: position,
-            map: map
-        });
-        map.panTo(position);
-    }
 }
 
-
-
-//
+// Click on address, take words and convert to geocode, then add marker on google maps.
+function addressToMap() {
+    $('.cardClick').click(function() {
+        var marker = new google.maps.Marker({
+            position: {
+                lat: Number(this.dataset.lat),
+                lng: Number(this.dataset.lng)
+            },
+            map: map,
+            title: 'Hello World!'
+        });
+        console.log(this.dataset);
+    });
+}

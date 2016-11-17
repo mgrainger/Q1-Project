@@ -29,9 +29,10 @@ h1 {
 .info {
   width: 100%;
   padding-left: 2em;
+  margin-bottom: 0px;
 }
 .currentCity {
-  
+
 }
 .master {
   display: flex;
@@ -168,26 +169,13 @@ padding-bottom: 0px;
   height: 2em;
 }
 
-.alreadyPlayed {
-  /*display: none;*/
-  position:absolute;
-  margin-top: 5em;
-  margin-left: 2em;
+.directions p {
+  text-align: center;
 }
-.alreadyPlayed p {
-  display: none;
-  color: red;
-  font-size: 2em;
+.nix {
+  margin-left: 20%;
+  margin-top: 12%;
 }
-
-.alreadyPlayed a {
-  display:none;
-}
-/*.nix {
-  /*display: inline-block;*/
-  /*margin-left: 20%;
-  margin-top: 12%;*/
-/*}*/
 
 
 .outer {
