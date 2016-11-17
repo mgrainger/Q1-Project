@@ -30,15 +30,29 @@ h1 {
 .currentCity h3 {
   color: white;
 }
+.master {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+}
 
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 90%;
+  height: 100%;
+  width: 95%;
   flex: 1;
   padding: 2em;
+}
+
+.sidebar {
+  width: 5%;
+  background-image: url(#2CCB89);
+  background-color: #2CCB89;
 }
 
 h2 {
@@ -107,27 +121,35 @@ input#city {
   align-items: center;
 }
 
-.cards {
+.middle {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.columns {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  width: 100%;
 }
 .cardCol {
   display: flex;
   flex-wrap: wrap;
+  height: 100%;
 
 }
 .mapCol {
-  height: 65vh;
+  display: flex;
+  margin-top: .5em;
+  height: 76vh;
 
 }
 
 #map {
-      background-color: grey;
-      position: absolute;
-      height: inherit;
-      width: inherit;
-
+      position: static;
+      height: auto;
+      width: 100%;
 }
 
 

@@ -76,14 +76,14 @@ function swingAJAXRequest(data) {
 function getCourses(data) {
     var courses = data.courses;
     var moreCoursesURL = data.meta.courses.next;
-    var $cards = $('.cards .cardCol');
+    var $cards = $('.cardCol');
 
     for (var i = 0; i < courses.length; i++) {
 
         // Public v Private
         if ($("#private").prop('checked') === false) {
             if (courses[i].membership_type === 'public') {
-                var $card = '<div class="col s12 m6 l6"> <div class="card blue-grey darken-1"> <div class="card-content white-text"><span class="card-title truncate">' +
+                var $card = '<div class="col s12 m6 l6"> <div class="card teal darken-3"> <div class="card-content white-text"><span class="card-title truncate">' +
                     courses[i].name + '</span><p class= "truncate">' +
                     '<address><br>' + courses[i].addr_1 + '</br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</address>' +
                     '<br> <i class="material-icons">phone</i>' + courses[i].phone +
@@ -92,7 +92,7 @@ function getCourses(data) {
                 $cards.append($card);
             }
         } else {
-            var $allCards = '<div class="col s12 m6 l6"> <div class="card blue-grey darken-1"> <div class="card-content white-text"><span class="card-title truncate">' +
+            var $allCards = '<div class="col s12 m6 l6"> <div class="card teal darken-3"> <div class="card-content white-text"><span class="card-title truncate">' +
                 courses[i].name + '</span><p class= "truncate">' +
                 '<address><br>' + courses[i].addr_1 + '</br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</address>' +
                 '<br>' + courses[i].phone +
@@ -111,7 +111,20 @@ function getCourses(data) {
     }
 }
 
-
+function initMap(data) {
+    var searchCenter = {
+        lat: getLatitude(data),
+        lng: getLongitude(data)
+    };
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: searchCenter
+    });
+    // var marker = new google.maps.Marker({
+    //     position: uluru,
+    //     map: map
+    // });
+}
 
 // $(".card").click(function() {
 //     $(this).fadeOut(100);
@@ -123,17 +136,3 @@ function getCourses(data) {
 // });
 
 //
-function initMap(data) {
-    var uluru = {
-        lat: getLatitude(data),
-        lng: getLongitude(data)
-    };
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
-        center: uluru
-    });
-    // var marker = new google.maps.Marker({
-    //     position: uluru,
-    //     map: map
-    // });
-}

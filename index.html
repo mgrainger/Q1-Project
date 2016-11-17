@@ -14,7 +14,7 @@
         <title>Golf Search App</title>
     </head>
     <body>
-        <header class="header">
+        <header class="header teal accent-4">
             <h1>Golf Search App</h1>
 
             <div class="currentCity">
@@ -54,21 +54,22 @@
                 </div>
             </div>
         </header>
-
-        <main class="main">
-            <section class="cards">
-                <div class="row">
-
-                    <div class="col s6 m4 l8 cardCol">
-                        <!-- Append Cards Here -->
+        <div class="row master">
+            <div class="sidebar teal accent-4"></div>
+            <main class="main">
+                <section class="middle">
+                    <div class="row columns">
+                        <div class="col s6 m4 l8 cardCol">
+                            <!-- Append Cards Here -->
+                        </div>
+                        <div class="col s6 m8 l4 mapCol">
+                            <div id="map"></div>
+                        </div>
                     </div>
-                    <div class="col s6 m8 l4 mapCol">
-                        <div id="map"></div>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <footer class="footer">
+                </section>
+            </main>
+        </div>
+        <footer class="footer teal accent-4">
             <small>&copy; 2016 Murph Grainger</small>
         </footer>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrwG2vaCL_doUJ1Io8bTNrGzxT30N6SqE"></script>
