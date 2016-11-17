@@ -17,8 +17,8 @@ function loadMaterialStyles() {
 function buildGeoCodeURL() {
     var city = $('#city').val();
     var distance = $('#distanceInput').val();
-    var $addDistance = '<h6>' + distance + '</h6>';
-    var $currentAdd = '<h3>' + city + ' Golf Courses</h3>';
+    var $addDistance = '<h6> Max Driving Distance: <span>' + distance + '</span> miles</h6>';
+    var $currentAdd = '<h5>Showing Results for: <span class= "cityDistance">' + city + ' </span> Golf Courses</h5>';
     var $currentCity = $('.currentCity');
     $currentCity.append($currentAdd);
     $currentCity.append($addDistance);
@@ -29,9 +29,6 @@ function buildGeoCodeURL() {
     var geoKey = '&key=AIzaSyDrwG2vaCL_doUJ1Io8bTNrGzxT30N6SqE';
     return herokuPrefix + geoAPI + geoComp + geoKey;
 }
-
-
-
 
 function attachFormSubmissionHandler() {
     $('.form').submit(function(event) {
@@ -49,8 +46,6 @@ function geoAJAXRequest(url) {
     });
 }
 
-
-
 function getLatitude(data) {
     return data.results[0].geometry.location.lat;
 }
@@ -60,7 +55,7 @@ function getLongitude(data) {
 }
 
 function getRadius(data) {
-    return $('.currentCity h6').text();
+    return $('.cityDistance').text();
 }
 
 function swingURL(data) {
@@ -93,7 +88,7 @@ function getCourses(data) {
         // Public v Private
         if ($("#private").prop('checked') === false) {
             if (courses[i].membership_type === 'public') {
-                var $card = '<div class="col s12 m12 l6 cardClick"><a class="btn-floating btn-large waves-effect waves-light red nix"><i class="material-icons">add</i></a><div class="card teal darken-3 outer"> <div class="card-content white-text"><span class="card-title truncate">' +
+                var $card = '<div class="col s12 m12 l6 cardClick"><div class= "alreadyPlayed"><p>Already Played!</p><a class="btn-floating btn-large waves-effect waves-light red nix"><i class="material-icons">not_interested</i></a></div><div class="card teal darken-3 outer"> <div class="card-content white-text"><span class="card-title truncate">' +
                     courses[i].name + '</span><p class= "truncate">' +
                     '<address><br>' + courses[i].addr_1 + '</br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
                     '<div class = "row phoneButton"> <div class = "col s8 phone"> <i class="material-icons">phone</i>' + courses[i].phone +
@@ -121,7 +116,7 @@ function getCourses(data) {
         });
         coursesPlayed();
         clearCourse();
-        // activeAddress();
+        activeAddress();
     }
 }
 
@@ -132,19 +127,22 @@ function activeAddress() {
     });
 }
 
-function coursesPlayed() {
-    $(".outer")
-        .on("mouseenter", function() {
-            $(this).parents('.cardClick').find('.nix').attr('style', 'display:block');
-        })
-        .on("mouseleave", function() {
-            $(this).parents('.cardClick').find('.nix').attr('style', 'display:none');
-        });
-}
+// function coursesPlayed() {
+//     $(".cardClick")
+//         .on("mouseenter", function() {
+//             $(this).find('.alreadyPlayed a, p').attr('style', 'display:inline-block');
+//             $(this).find('.outer').css('opacity', 0.2);
+//         })
+//         .on("mouseleave", function() {
+//             $(this).find('.alreadyPlayed a, p').attr('style', 'display:none');
+//             $(this).find('.outer').css('opacity', 1);
+//         });
+// }
 
 function clearCourse() {
     $('.nix').click(function() {
         $(this).parents('.cardClick').fadeOut(100).remove();
+        console.log('this is called');
     });
 }
 

@@ -10,7 +10,7 @@ body {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;;
   align-items: center;
   height: 15vh;
   background-color: #2CCB89;
@@ -19,7 +19,7 @@ body {
 }
 
 h1 {
-  display: none;
+  color: white;
 }
 
 .logo {
@@ -31,7 +31,7 @@ h1 {
   padding-left: 2em;
 }
 .currentCity {
-  display: none;
+  
 }
 .master {
   display: flex;
@@ -168,19 +168,30 @@ padding-bottom: 0px;
   height: 2em;
 }
 
-.nix {
-  display: none;
-  position: absolute;
-  margin-left: 20%;
-  margin-top: 12%;
+.alreadyPlayed {
+  /*display: none;*/
+  position:absolute;
+  margin-top: 5em;
+  margin-left: 2em;
 }
+.alreadyPlayed p {
+  display: none;
+  color: red;
+  font-size: 2em;
+}
+
+.alreadyPlayed a {
+  display:none;
+}
+/*.nix {
+  /*display: inline-block;*/
+  /*margin-left: 20%;
+  margin-top: 12%;*/
+/*}*/
+
 
 .outer {
   position: relative;
-}
-
-.outer:hover{
-  opacity: .5;
 }
 
 .card .card-content .card-title {
