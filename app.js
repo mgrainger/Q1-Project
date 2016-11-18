@@ -144,7 +144,6 @@ function getCourses(data) {
             dataType: 'json',
             success: getCourses,
         });
-        // coursesPlayed();
 
         // activeAddress();
 

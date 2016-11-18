@@ -21,18 +21,29 @@ body {
 
 h1 {
   color: white;
-  margin-right: 40%;
 }
 
 h1 span {
   color: #00695c;
 }
 
+.heading {
+  display: flex;
+  align-items: center;
+}
 
+.headingRow {
+  width: 100%;
+  display: flex;
+}
 
-.logo {
-  height: 5em;
-  width: auto;
+.searchRow {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;  
+}
+.headingIcon {
+  padding-right: 2em;
 }
 .info {
   display: flex;
