@@ -262,7 +262,7 @@ address a {
   color: white;
 }
 
-@media (max-width: 1110px) {
+@media (max-width: 1200px) {
   .headline {
     font-size: 3em;
 
