@@ -18,9 +18,10 @@ body {
   padding-right: 2em;
 }
 
+
 h1 {
   color: white;
-  margin-right: 6.5em;
+  margin-right: 40%;
 }
 
 h1 span {
@@ -154,7 +155,7 @@ input#distanceInput {
   justify-content: center;
   flex-wrap: wrap;
   height: 36em;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .card .card-action {
@@ -182,7 +183,7 @@ padding-bottom: 0px;
 }
 
 .clickCardDirections p{
-  text-align: center;
+  text-align: right;
   margin-left: 1em;
   font-weight: bold;
 }
@@ -192,7 +193,7 @@ padding-bottom: 0px;
 }
 
 .directions p {
-  text-align: center;
+  text-align: right;
   font-weight: bold;
 }
 .nix {

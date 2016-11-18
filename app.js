@@ -24,12 +24,17 @@ function buildGeoCodeURL() {
     var $currentAdd = '<h5>Showing Results for: <span class= "cityDistance">' + city + ' </span> Golf Courses</h5>';
     var $currentCity = $('.currentCity');
     var $userInfo = $('.userDirections');
+    var $addCardDirections = '<div class="clickCardDirections">' +
+        '<p>To see the course on the map click:&nbsp;&nbsp;&nbsp;' +
+        '<a class="btn teal darken-3"></a>' +
+        '</p></div>';
     var $addDirections = '<div class="row directions">' +
         '<p>If you already played the course click:&nbsp;&nbsp;&nbsp;' +
         '<a class="btn-floating btn-large waves-effect waves-light  red lighten-2"><i class="material-icons">not_interested</i></a>' +
         '</p></div>';
     $currentCity.append($currentAdd);
     $currentCity.append($addDistance);
+    $userInfo.append($addCardDirections);
     $userInfo.append($addDirections);
     var herokuPrefix = 'https://galvanize-cors-proxy.herokuapp.com/';
     var geoAPI = 'https://maps.googleapis.com/maps/api/geocode/json?';
@@ -107,16 +112,17 @@ function getCourses(data) {
                     courses[i].name + '</span><p class= "truncate">' +
                     '<address class = "address"><br>' + courses[i].addr_1 + ' </br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
                     '<div class = "row phoneButton"> <div class = "col s8 phone"> <i class="material-icons">phone</i>' + courses[i].phone +
-                    '</div><div class = "col s4 buttonPlay"> <a class="btn-floating btn-large waves-effect waves-light red lighten-2 nix"><i class="material-icons">not_interested</i></a></div></div><div class="card-action"><a href="' +
+                    '</div><div class = "col s4 buttonPlay"> <a class="btn-floating btn-large waves-effect waves-light red lighten-2 nix"><i class="material-icons">not_interested</i></a></div></div><div class="card-action"><a target="_blank" href="' +
                     courses[i].website + '">Course Website</a></div></div></div></div>';
                 $cards.append($card);
             }
         } else {
+            console.log('working');
             var $allCards = '<div class="col s12 m12 l6 cardClick" data-lat="' + courses[i].location.lat + '" data-lng="' + courses[i].location.lng + '"><div class="card teal darken-3 outer"> <div class="card-content white-text"><span class="card-title truncate">' +
                 courses[i].name + '</span><p class= "truncate">' +
                 '<address class = "address"><br>' + courses[i].addr_1 + ' </br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
                 '<div class = "row phoneButton"> <div class = "col s8 phone"> <i class="material-icons">phone</i>' + courses[i].phone +
-                '</div><div class = "col s4 buttonPlay"> <a class="btn-floating btn-large waves-effect waves-light red lighten-2 nix"><i class="material-icons">not_interested</i></a></div></div><div class="card-action"><a href="' +
+                '</div><div class = "col s4 buttonPlay"> <a class="btn-floating btn-large waves-effect waves-light red lighten-2 nix"><i class="material-icons">not_interested</i></a></div></div><div class="card-action"><a target="_blank" href="' +
                 courses[i].website + '">Course Website</a></div></div></div></div>';
             $cards.append($allCards);
         }
