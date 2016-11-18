@@ -28,6 +28,8 @@ h1 span {
   color: #00695c;
 }
 
+
+
 .logo {
   height: 5em;
   width: auto;
@@ -241,3 +243,9 @@ address a {
 .footer small {
   color: white;
 }
+
+@media (max-width: 1110px) {
+  .headline {
+    font-size: 3em;
+
+  }
