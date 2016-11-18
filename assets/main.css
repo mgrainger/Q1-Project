@@ -35,6 +35,7 @@ h1 span {
 .headingRow {
   width: 100%;
   display: flex;
+  margin: 0px;
 }
 
 .searchRow {
