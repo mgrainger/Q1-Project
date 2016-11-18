@@ -20,7 +20,7 @@ function buildGeoCodeURL() {
 
     var city = $('#city').val();
     var distance = $('#distanceInput').val();
-    var $addDistance = '<h6> Max Driving Distance: <span>' + distance + '</span> miles</h6>';
+    var $addDistance = '<h6> Max Driving Distance: <span class = "drivingDistance">' + distance + '</span> miles</h6>';
     var $currentAdd = '<h5>Showing Results for: <span class= "cityDistance">' + city + ' </span> Golf Courses</h5>';
     var $currentCity = $('.currentCity');
     var $userInfo = $('.userDirections');
@@ -75,7 +75,7 @@ function getLongitude(data) {
 }
 
 function getRadius(data) {
-    return $('.cityDistance').text();
+    return $('.drivingDistance').text();
 }
 
 function swingURL(data) {
@@ -145,11 +145,12 @@ function getCourses(data) {
             success: getCourses,
         });
         // coursesPlayed();
-        clearCourse();
+
         // activeAddress();
 
     } else {
         addressToMap();
+        clearCourse();
     }
 }
 
@@ -163,7 +164,7 @@ function getCourses(data) {
 function clearCourse() {
     $('.nix').click(function() {
         // $(this).parents('.cardClick').fadeTo('slow', 0).remove();
-
+        console.log('hello');
         $(this).parents('.cardClick').fadeOut("normal", function() {
             $(this).parents('.cardClick');
         });
