@@ -245,6 +245,7 @@ address {
 
 address a {
   color: white;
+  line-height: 2em;
 }
 
 .footer {

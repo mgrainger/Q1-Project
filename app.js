@@ -144,7 +144,7 @@ function getCourses(data) {
             success: getCourses,
         });
 
-        // activeAddress();
+
 
     } else {
         addressToMap();
@@ -152,12 +152,12 @@ function getCourses(data) {
     }
 }
 
-// function activeAddress() {
-//     $('address').each(function() {
-//         var link = "<a href='http://maps.google.com/maps?q=" + encodeURIComponent($(this).text()) + "' target='_blank'>" + $(this).text() + "</a>";
-//         $(this).html(link);
-//     });
-// }
+function activeAddress() {
+    $('address').each(function() {
+        var link = "<a href='http://maps.google.com/maps?q=" + encodeURIComponent($(this).text()) + "' target='_blank'>" + $(this).text() + "</a>";
+        $(this).html(link);
+    });
+}
 
 function clearCourse() {
     $('.nix').click(function() {
@@ -195,4 +195,6 @@ function addressToMap() {
         });
         map.panTo(marker.getPosition());
     });
+
+    activeAddress();
 }
