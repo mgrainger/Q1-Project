@@ -40,7 +40,7 @@ h1 span {
 .searchRow {
   display: flex;
   justify-content: flex-end;
-  align-items: center;  
+  align-items: center;
 }
 .headingIcon {
   padding-right: 2em;
@@ -107,9 +107,14 @@ h2 {
 .formHead {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   margin: 0px;
   width: 100%;
+}
+
+.iconCol {
+  display: flex;
+  justify-content: center;
 }
 
 #formRow {

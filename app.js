@@ -17,7 +17,6 @@ function loadMaterialStyles() {
 }
 
 function buildGeoCodeURL() {
-
     var city = $('#city').val();
     var distance = $('#distanceInput').val();
     var $addDistance = '<h6> Max Driving Distance: <span class = "drivingDistance">' + distance + '</span> miles</h6>';
@@ -176,7 +175,7 @@ function initMap(data) {
         lng: getLongitude(data)
     };
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 8,
+        zoom: 9,
         center: searchCenter
     });
 
