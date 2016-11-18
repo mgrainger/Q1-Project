@@ -15,14 +15,23 @@
     </head>
     <body>
         <header class="header teal accent-4">
-            <h1>Golf New Places</h1>
+            <a class="btn-floating btn-large waves-effect teal darken-3 ">
+                <i class="material-icons ">location_on</i>
+            </a>
+            <h1>
+                Golf
+                <span>New Places</span>
+            </h1>
             <div class="trigger">
                 <a class="waves-effect waves-light btn load" href="#modal1">Search</a>
             </div>
             <div id="modal1" class="modal">
                 <div class="modal-content">
-                    <div class="row">
-                        <h2>Where do you want to golf?</h2>
+                    <div class="row formHead">
+                        <a class="btn-floating btn-large waves-effect teal lighten-1 ">
+                            <i class="material-icons ">location_on</i>
+                        </a>
+                        <h2 >Where do you want to golf?</h2>
                     </div>
                     <form class="form">
                         <div class="row" id="formRow">
@@ -63,7 +72,15 @@
                 <div class="col s12 m12 l6 currentCity">
                     <!-- Append Current City Here -->
                 </div>
-                <div class="col s12 m12 l6 userDirections"></div>
+                <div class="col s12 m12 l6 userDirections">
+                    <div class="clickCardDirections">
+                        <p>
+                            To see the course on the map click:&nbsp;&nbsp;&nbsp;
+                            <a class="btn teal darken-3"></a>
+                        </p>
+                    </div>
+
+                </div>
             </div>
             <div class="row master">
                 <section class="middle">

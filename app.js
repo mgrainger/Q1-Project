@@ -7,7 +7,6 @@ $(document).ready(function() {
 
 var map = null;
 
-
 function loadModalAnimation() {
     $('.load').trigger('click');
     $('.modal').modal();
@@ -46,6 +45,12 @@ function attachFormSubmissionHandler() {
         geoAJAXRequest(buildGeoCodeURL());
     });
 }
+
+// function clearSearch() {
+// $('.load').
+//
+//   $('.main').empty();
+// }
 
 function geoAJAXRequest(url) {
     $.ajax({
@@ -107,11 +112,11 @@ function getCourses(data) {
                 $cards.append($card);
             }
         } else {
-            var $allCards = '<div class="col s12 m6 l6 cardClick"> <div class="card teal darken-3"> <div class="card-content white-text"><span class="card-title truncate">' +
+            var $allCards = '<div class="col s12 m12 l6 cardClick" data-lat="' + courses[i].location.lat + '" data-lng="' + courses[i].location.lng + '"><div class="card teal darken-3 outer"> <div class="card-content white-text"><span class="card-title truncate">' +
                 courses[i].name + '</span><p class= "truncate">' +
-                '<address><br>' + courses[i].addr_1 + '</br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</address>' +
-                '<br>' + courses[i].phone +
-                '</br></p></div><div class="card-action"><a href="' +
+                '<address class = "address"><br>' + courses[i].addr_1 + ' </br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
+                '<div class = "row phoneButton"> <div class = "col s8 phone"> <i class="material-icons">phone</i>' + courses[i].phone +
+                '</div><div class = "col s4 buttonPlay"> <a class="btn-floating btn-large waves-effect waves-light red lighten-2 nix"><i class="material-icons">not_interested</i></a></div></div><div class="card-action"><a href="' +
                 courses[i].website + '">Course Website</a></div></div></div></div>';
             $cards.append($allCards);
         }
@@ -142,8 +147,11 @@ function getCourses(data) {
 
 function clearCourse() {
     $('.nix').click(function() {
-        $(this).parents('.cardClick').fadeOut(100).remove();
+        // $(this).parents('.cardClick').fadeTo('slow', 0).remove();
 
+        $(this).parents('.cardClick').fadeOut("normal", function() {
+            $(this).parents('.cardClick');
+        });
     });
 }
 
@@ -153,7 +161,7 @@ function initMap(data) {
         lng: getLongitude(data)
     };
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
+        zoom: 8,
         center: searchCenter
     });
 
@@ -168,8 +176,9 @@ function addressToMap() {
                 lng: Number(this.dataset.lng)
             },
             map: map,
-            title: 'Hello World!'
+            title: 'Hello World!',
+            snippet: 'blah blah blah'
         });
-        console.log(this.dataset);
+        map.panTo(marker.getPosition());
     });
 }
