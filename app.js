@@ -116,11 +116,20 @@ function getCourses(data) {
                     courses[i].website + '">Course Website</a></div></div></div></div>';
                 $cards.append($card);
             }
+        } else if ($("#public").prop('checked') === false) {
+            if (courses[i].membership_type === 'private') {
+                var $card2 = '<div class="col s12 m12 l6 cardClick" data-lat="' + courses[i].location.lat + '" data-lng="' + courses[i].location.lng + '"><div class="card teal darken-3 outer"> <div class="card-content white-text"><span class="card-title truncate">' +
+                    courses[i].name + '</span><p class= "truncate">' +
+                    '<address class = "address"><br>' + courses[i].addr_1 + ' </br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
+                    '<div class = "row phoneButton"> <div class = "col s8 phone"> <i class="material-icons">phone</i>' + courses[i].phone +
+                    '</div><div class = "col s4 buttonPlay"> <a class="btn-floating btn-large waves-effect waves-light red lighten-2 nix"><i class="material-icons">not_interested</i></a></div></div><div class="card-action"><a target="_blank" href="' +
+                    courses[i].website + '">Course Website</a></div></div></div></div>';
+                $cards.append($card2);
+            }
         } else {
-            console.log('working');
             var $allCards = '<div class="col s12 m12 l6 cardClick" data-lat="' + courses[i].location.lat + '" data-lng="' + courses[i].location.lng + '"><div class="card teal darken-3 outer"> <div class="card-content white-text"><span class="card-title truncate">' +
                 courses[i].name + '</span><p class= "truncate">' +
-                '<address class = "address"><br>' + courses[i].addr_1 + ' </br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
+                '<address class = "address"><br class = "membership">' + courses[i].membership_type + '</br><br>' + courses[i].addr_1 + ' </br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
                 '<div class = "row phoneButton"> <div class = "col s8 phone"> <i class="material-icons">phone</i>' + courses[i].phone +
                 '</div><div class = "col s4 buttonPlay"> <a class="btn-floating btn-large waves-effect waves-light red lighten-2 nix"><i class="material-icons">not_interested</i></a></div></div><div class="card-action"><a target="_blank" href="' +
                 courses[i].website + '">Course Website</a></div></div></div></div>';
