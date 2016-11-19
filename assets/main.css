@@ -175,7 +175,7 @@ input#distanceInput {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  height: 36em;
+  height: 70.5vh;
   overflow: scroll;
 }
 
@@ -186,7 +186,7 @@ padding-bottom: 0px;
 .mapCol {
   display: flex;
   margin-top: .5em;
-  height: 71.5vh;
+  height: 70.5vh;
 
 }
 

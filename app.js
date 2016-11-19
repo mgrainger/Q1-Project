@@ -3,6 +3,7 @@ $(document).ready(function() {
     loadMaterialStyles();
     attachFormSubmissionHandler();
     loadModalAnimation();
+    refreshPage();
 });
 
 var map = null;
@@ -10,6 +11,13 @@ var map = null;
 function loadModalAnimation() {
     $('.load').trigger('click');
     $('.modal').modal();
+}
+
+function refreshPage() {
+    $('.load').click(function() {
+        console.log('this was clicked');
+        window.location.reload();
+    });
 }
 
 function loadMaterialStyles() {
@@ -49,12 +57,6 @@ function attachFormSubmissionHandler() {
         geoAJAXRequest(buildGeoCodeURL());
     });
 }
-
-// function clearSearch() {
-// $('.load').
-//
-//   $('.main').empty();
-// }
 
 function geoAJAXRequest(url) {
     $.ajax({
