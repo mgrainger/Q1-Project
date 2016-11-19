@@ -145,9 +145,6 @@ function getCourses(data) {
             dataType: 'json',
             success: getCourses,
         });
-
-
-
     } else {
         addressToMap();
         clearCourse();
@@ -180,10 +177,8 @@ function initMap(data) {
         zoom: 9,
         center: searchCenter
     });
-
 }
 
-// Click on address, take words and convert to geocode, then add marker on google maps.
 function addressToMap() {
     $('.cardClick').click(function() {
         var marker = new google.maps.Marker({
