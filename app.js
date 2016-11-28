@@ -15,7 +15,6 @@ function loadModalAnimation() {
 
 function refreshPage() {
     $('.load').click(function() {
-        console.log('this was clicked');
         window.location.reload();
     });
 }
@@ -25,29 +24,36 @@ function loadMaterialStyles() {
 }
 
 function buildGeoCodeURL() {
-    var city = $('#city').val();
-    var distance = $('#distanceInput').val();
-    var $addDistance = '<h6> Max Driving Distance: <span class = "drivingDistance">' + distance + '</span> miles</h6>';
-    var $currentAdd = '<h5>Showing Results for: <span class= "cityDistance">' + city + ' </span> Golf Courses</h5>';
-    var $currentCity = $('.currentCity');
-    var $userInfo = $('.userDirections');
-    var $addCardDirections = '<div class="clickCardDirections">' +
-        '<p>To see the course on the map click:&nbsp;&nbsp;&nbsp;' +
-        '<a class="btn teal darken-3"></a>' +
-        '</p></div>';
-    var $addDirections = '<div class="row directions">' +
-        '<p>If you already played the course click:&nbsp;&nbsp;&nbsp;' +
-        '<a class="btn-floating btn-large waves-effect waves-light  red lighten-2"><i class="material-icons">not_interested</i></a>' +
-        '</p></div>';
+    let city = $('#city').val();
+    let distance = $('#distanceInput').val();
+    let $currentCity = $('.currentCity');
+    let $userInfo = $('.userDirections');
+    let $addDistance =
+        `<h6> Max Driving Distance:
+        <span class = "drivingDistance">  ${distance} </span> miles</h6>`;
+    let $currentAdd =
+        `<h5>Showing Results for: <span class= "cityDistance">
+        ${city} </span> Golf Courses</h5>`;
+    let $addCardDirections =
+        `<div class="clickCardDirections">
+        <p>To see the course on the map click:&nbsp;&nbsp;&nbsp;
+        <a class="btn teal darken-3"></a>
+        </p></div>`;
+    let $addDirections =
+        `<div class="row directions">
+        <p>If you already played the course click:&nbsp;&nbsp;&nbsp;
+        <a class="btn-floating btn-large waves-effect waves-light  red lighten-2">
+        <i class="material-icons">not_interested</i></a>
+        </p></div>`;
     $currentCity.append($currentAdd);
     $currentCity.append($addDistance);
     $userInfo.append($addCardDirections);
     $userInfo.append($addDirections);
-    var herokuPrefix = 'https://galvanize-cors-proxy.herokuapp.com/';
-    var geoAPI = 'https://maps.googleapis.com/maps/api/geocode/json?';
-    var mapsAPI = 'https://maps.googleapis.com/maps/api/js?';
-    var geoComp = 'address=' + city;
-    var geoKey = '&key=AIzaSyDrwG2vaCL_doUJ1Io8bTNrGzxT30N6SqE&libraries=places';
+    const herokuPrefix = 'https://galvanize-cors-proxy.herokuapp.com/';
+    const geoAPI = 'https://maps.googleapis.com/maps/api/geocode/json?';
+    const mapsAPI = 'https://maps.googleapis.com/maps/api/js?';
+    let geoComp = 'address=' + city;
+    let geoKey = '&key=AIzaSyDrwG2vaCL_doUJ1Io8bTNrGzxT30N6SqE&libraries=places';
     return herokuPrefix + geoAPI + geoComp + geoKey;
 }
 
@@ -80,12 +86,12 @@ function getRadius(data) {
 }
 
 function swingURL(data) {
-    var swingAPI = 'https://api.swingbyswing.com/v2/courses/search_by_location?';
-    var swingCoordinates = 'lat=' + getLatitude(data) + '&lng=' + getLongitude(data);
-    var swingRadius = '&radius=' + getRadius(data);
-    var holeCount = '&active_only=yes&hole_count=' + 18;
-    var orderBy = '&order_by=local_rank&from=1';
-    var swingToken = '&access_token=9a7a612e-4ccf-4deb-a2da-cde8bc46db01';
+    const swingAPI = 'https://api.swingbyswing.com/v2/courses/search_by_location?';
+    let swingCoordinates = 'lat=' + getLatitude(data) + '&lng=' + getLongitude(data);
+    let swingRadius = '&radius=' + getRadius(data);
+    let holeCount = '&active_only=yes&hole_count=' + 18;
+    let orderBy = '&order_by=local_rank&from=1';
+    let swingToken = '&access_token=9a7a612e-4ccf-4deb-a2da-cde8bc46db01';
     return swingAPI + swingCoordinates + swingRadius + holeCount + orderBy + swingToken;
 }
 
@@ -100,40 +106,73 @@ function swingAJAXRequest(data) {
 }
 
 function getCourses(data) {
-    var courses = data.courses;
-    var moreCoursesURL = data.meta.courses.next;
-    var $cards = $('.cardCol');
+    const courses = data.courses;
+    const moreCoursesURL = data.meta.courses.next;
+    let $cards = $('.cardCol');
 
     for (var i = 0; i < courses.length; i++) {
 
         // Public v Private
         if ($("#private").prop('checked') === false) {
             if (courses[i].membership_type === 'public') {
-                var $card = '<div class="col s12 m12 l6 cardClick" data-lat="' + courses[i].location.lat + '" data-lng="' + courses[i].location.lng + '"><div class="card teal darken-3 outer"> <div class="card-content white-text"><span class="card-title truncate">' +
-                    courses[i].name + '</span><p class= "truncate">' +
-                    '<address class = "address truncate"><br>' + courses[i].addr_1 + ' </br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
-                    '<div class = "row phoneButton"> <div class = "col s8 phone"> <i class="material-icons">phone</i>' + courses[i].phone +
-                    '</div><div class = "col s4 buttonPlay"> <a class="btn-floating btn-large waves-effect waves-light red lighten-2 nix"><i class="material-icons">not_interested</i></a></div></div><div class="card-action"><a target="_blank" href="' +
-                    courses[i].website + '">Course Website</a></div></div></div></div>';
+                let $card =
+                    `<div class="col s12 m12 l6 cardClick"data-lat="${courses[i].location.lat}" data-lng="${courses[i].location.lng}">
+                <div class="card teal darken-3 outer">
+                <div class="card-content white-text">
+                  <span class="card-title truncate"> ${courses[i].name} </span><p class= "truncate">
+                  <address class = "address truncate"><br>${courses[i].addr_1}</br>
+                    <br> ${courses[i].city} ${courses[i].state_or_province} ${courses[i].zip_code} </br></address>
+                <div class = "row phoneButton">
+                  <div class = "col s8 phone">
+                    <i class="material-icons">phone</i> ${courses[i].phone}
+                  </div>
+                  <div class = "col s4 buttonPlay"> <a class="btn-floating btn-large waves-effect waves-light red lighten-2 nix">
+                      <i class="material-icons">not_interested</i></a>
+                  </div>
+                </div>
+                <div class="card-action"><a target="_blank" href="${courses[i].website}">Course Website</a></div>
+                </div></div></div>`;
                 $cards.append($card);
             }
         } else if ($("#public").prop('checked') === false) {
             if (courses[i].membership_type === 'private') {
-                var $card2 = '<div class="col s12 m12 l6 cardClick" data-lat="' + courses[i].location.lat + '" data-lng="' + courses[i].location.lng + '"><div class="card teal darken-3 outer"> <div class="card-content white-text"><span class="card-title truncate">' +
-                    courses[i].name + '</span><p class= "truncate">' +
-                    '<address class = "address"><br>' + courses[i].addr_1 + ' </br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
-                    '<div class = "row phoneButton"> <div class = "col s8 phone"> <i class="material-icons">phone</i>' + courses[i].phone +
-                    '</div><div class = "col s4 buttonPlay"> <a class="btn-floating btn-large waves-effect waves-light red lighten-2 nix"><i class="material-icons">not_interested</i></a></div></div><div class="card-action"><a target="_blank" href="' +
-                    courses[i].website + '">Course Website</a></div></div></div></div>';
+                let $card2 =
+                    `<div class="col s12 m12 l6 cardClick"data-lat="${courses[i].location.lat}" data-lng="${courses[i].location.lng}">
+                <div class="card teal darken-3 outer">
+                <div class="card-content white-text">
+                  <span class="card-title truncate"> ${courses[i].name} </span><p class= "truncate">
+                  <address class = "address truncate"><br>${courses[i].addr_1}</br>
+                    <br> ${courses[i].city} ${courses[i].state_or_province} ${courses[i].zip_code} </br></address>
+                <div class = "row phoneButton">
+                  <div class = "col s8 phone">
+                    <i class="material-icons">phone</i> ${courses[i].phone}
+                  </div>
+                  <div class = "col s4 buttonPlay"> <a class="btn-floating btn-large waves-effect waves-light red lighten-2 nix">
+                      <i class="material-icons">not_interested</i></a>
+                  </div>
+                </div>
+                <div class="card-action"><a target="_blank" href="${courses[i].website}">Course Website</a></div>
+                </div></div></div>`;
                 $cards.append($card2);
             }
         } else {
-            var $allCards = '<div class="col s12 m12 l6 cardClick" data-lat="' + courses[i].location.lat + '" data-lng="' + courses[i].location.lng + '"><div class="card teal darken-3 outer"> <div class="card-content white-text"><span class="card-title truncate">' +
-                courses[i].name + '</span><p class= "truncate membertype">' + courses[i].membership_type +
-                '<address class = "address"><br class = "membership"></br><br>' + courses[i].addr_1 + ' </br><br>' + courses[i].city + ' ' + courses[i].state_or_province + ' ' + courses[i].zip_code + '</br></address>' +
-                '<div class = "row phoneButton"> <div class = "col s8 phone"> <i class="material-icons">phone</i>' + courses[i].phone +
-                '</div><div class = "col s4 buttonPlay"> <a class="btn-floating btn-large waves-effect waves-light red lighten-2 nix"><i class="material-icons">not_interested</i></a></div></div><div class="card-action"><a target="_blank" href="' +
-                courses[i].website + '">Course Website</a></div></div></div></div>';
+            let $allCards =
+                `<div class="col s12 m12 l6 cardClick"data-lat="${courses[i].location.lat}" data-lng="${courses[i].location.lng}">
+            <div class="card teal darken-3 outer">
+            <div class="card-content white-text">
+              <span class="card-title truncate"> ${courses[i].name} </span><p class= "truncate">
+              <address class = "address truncate"><br>${courses[i].addr_1}</br>
+                <br> ${courses[i].city} ${courses[i].state_or_province} ${courses[i].zip_code} </br></address>
+            <div class = "row phoneButton">
+              <div class = "col s8 phone">
+                <i class="material-icons">phone</i> ${courses[i].phone}
+              </div>
+              <div class = "col s4 buttonPlay"> <a class="btn-floating btn-large waves-effect waves-light red lighten-2 nix">
+                  <i class="material-icons">not_interested</i></a>
+              </div>
+            </div>
+            <div class="card-action"><a target="_blank" href="${courses[i].website}">Course Website</a></div>
+            </div></div></div>`;
             $cards.append($allCards);
         }
     }
@@ -153,15 +192,13 @@ function getCourses(data) {
 
 function activeAddress() {
     $('address').each(function() {
-        var link = "<a href='http://maps.google.com/maps?q=" + encodeURIComponent($(this).text()) + "' target='_blank'>" + $(this).text() + "</a>";
+        let link = "<a href='http://maps.google.com/maps?q=" + encodeURIComponent($(this).text()) + "' target='_blank'>" + $(this).text() + "</a>";
         $(this).html(link);
     });
 }
 
 function clearCourse() {
     $('.nix').click(function() {
-        // $(this).parents('.cardClick').fadeTo('slow', 0).remove();
-        console.log('hello');
         $(this).parents('.cardClick').fadeOut("normal", function() {
             $(this).parents('.cardClick');
         });
@@ -169,7 +206,7 @@ function clearCourse() {
 }
 
 function initMap(data) {
-    var searchCenter = {
+    let searchCenter = {
         lat: getLatitude(data),
         lng: getLongitude(data)
     };
@@ -181,14 +218,14 @@ function initMap(data) {
 
 function addressToMap() {
     $('.cardClick').click(function() {
-        var marker = new google.maps.Marker({
+        let marker = new google.maps.Marker({
             position: {
                 lat: Number(this.dataset.lat),
                 lng: Number(this.dataset.lng)
             },
             map: map,
-            title: 'Hello World!',
-            snippet: 'blah blah blah'
+            title: '',
+            snippet: ''
         });
         map.panTo(marker.getPosition());
     });
