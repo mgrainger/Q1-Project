@@ -51,7 +51,6 @@ function buildGeoCodeURL() {
     $userInfo.append($addDirections);
     const herokuPrefix = 'https://galvanize-cors-proxy.herokuapp.com/';
     const geoAPI = 'https://maps.googleapis.com/maps/api/geocode/json?';
-    const mapsAPI = 'https://maps.googleapis.com/maps/api/js?';
     let geoComp = 'address=' + city;
     let geoKey = '&key=AIzaSyDrwG2vaCL_doUJ1Io8bTNrGzxT30N6SqE&libraries=places';
     return herokuPrefix + geoAPI + geoComp + geoKey;
@@ -67,7 +66,7 @@ function attachFormSubmissionHandler() {
 function geoAJAXRequest(url) {
     $.ajax({
         url: url,
-        type: "GET",
+        type: 'GET',
         dataType: 'json',
         success: swingAJAXRequest,
     });
@@ -81,7 +80,7 @@ function getLongitude(data) {
     return data.results[0].geometry.location.lng;
 }
 
-function getRadius(data) {
+function getRadius() {
     return $('.drivingDistance').text();
 }
 
@@ -99,7 +98,7 @@ function swingAJAXRequest(data) {
     initMap(data);
     $.ajax({
         url: swingURL(data),
-        type: "GET",
+        type: 'GET',
         dataType: 'json',
         success: getCourses,
     });
@@ -111,9 +110,7 @@ function getCourses(data) {
     let $cards = $('.cardCol');
 
     for (var i = 0; i < courses.length; i++) {
-
-        // Public v Private
-        if ($("#private").prop('checked') === false) {
+        if ($('#private').prop('checked') === false) {
             if (courses[i].membership_type === 'public') {
                 let $card =
                     `<div class="col s12 m12 l6 cardClick"data-lat="${courses[i].location.lat}" data-lng="${courses[i].location.lng}">
@@ -134,7 +131,7 @@ function getCourses(data) {
                 </div></div></div>`;
                 $cards.append($card);
             }
-        } else if ($("#public").prop('checked') === false) {
+        } else if ($('#public').prop('checked') === false) {
             if (courses[i].membership_type === 'private') {
                 let $card2 =
                     `<div class="col s12 m12 l6 cardClick"data-lat="${courses[i].location.lat}" data-lng="${courses[i].location.lng}">
@@ -180,7 +177,7 @@ function getCourses(data) {
     if (moreCoursesURL) {
         $.ajax({
             url: moreCoursesURL,
-            type: "GET",
+            type: 'GET',
             dataType: 'json',
             success: getCourses,
         });
@@ -192,14 +189,14 @@ function getCourses(data) {
 
 function activeAddress() {
     $('address').each(function() {
-        let link = "<a href='http://maps.google.com/maps?q=" + encodeURIComponent($(this).text()) + "' target='_blank'>" + $(this).text() + "</a>";
+        let link = "<a href='http://maps.google.com/maps?q=" + encodeURIComponent($(this).text()) + "' target='_blank'>" + $(this).text() + '</a>';
         $(this).html(link);
     });
 }
 
 function clearCourse() {
     $('.nix').click(function() {
-        $(this).parents('.cardClick').fadeOut("normal", function() {
+        $(this).parents('.cardClick').fadeOut('normal', function() {
             $(this).parents('.cardClick');
         });
     });
