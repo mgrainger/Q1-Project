@@ -4,6 +4,8 @@
 
 * Public golfers have the same difficulty choosing a course to play as people do selecting wine.  Few websites show golfers what courses are playable near them and because of this, golfers also forget how many options they have, where they've played, costs, and distances.
 
-* This application uses the Swing by Swing API to access specific information per golf course.  It cross references that information with the Google Maps API to show per-course markers on the map.  
+* This is a front-end-only web application that uses the Swing by Swing API to access specific information per golf course.  It cross references that information with the Google Maps API to show per-course markers on the map.  
+
+Technologies Used: JavaScript/jQuery, CSS/Materialize, AJAX
 
 Deployed URL: https://golf-new-places.firebaseapp.com/
