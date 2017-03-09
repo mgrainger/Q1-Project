@@ -15,5 +15,5 @@
 
 
 ### See it refactored in AngularJS
-https://github.com/murphgrainger/Golf-New-Places-Angular-FE
-Deployed URL: https://golf-new-places-ng.firebaseapp.com/
+* https://github.com/murphgrainger/Golf-New-Places-Angular-FE
+* Deployed URL: https://golf-new-places-ng.firebaseapp.com/
